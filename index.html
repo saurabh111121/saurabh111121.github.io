@@ -5,16 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Index</title>
-  
+
   <link rel="stylesheet" href="src/index/index.css">
-  
+
   <!--  bootstrap -->
   <link rel="stylesheet" href="src/bootstrap/bootstrap-4.5.3-dist/css/bootstrap.min.css">
   <script src="src/bootstrap/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
 
 
-   <!-- Font aweseome -->
-   <script src="https://use.fontawesome.com/10b1426743.js"></script>
+  <!-- Font aweseome -->
+  <script src="https://use.fontawesome.com/10b1426743.js"></script>
 
 </head>
 
@@ -35,15 +35,6 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#section1">Section 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#section2">Section 2</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#section3">Section 3</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
@@ -68,135 +59,116 @@
     <!-- body -->
     <div>
 
+      <!-- Home -->
       <div id="home" class="container-fluid">
         <h1>Home</h1>
         <div class="alert alert-warning">
           <strong>Warning!</strong> page Under Construction
         </div>
-        <div class="alert alert-success">
-          <a href="test.html">Test link</a>
-        </div>
-        
-      </div>
-     
-    </div>
-    <div id="section1" class="container-fluid">
-      <h1>Section 1</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-    </div>
-    <div id="section2" class="container-fluid">
-      <h1>Section 2</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-    </div>
-    <div id="section3" class="container-fluid">
-      <h1>Section 3</h1>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-    </div>
-    <div id="contact" class="container-fluid">
-      <div class="jumbotron">
-        <h1 style="text-align: center;">Drop me a line</h1>
-        <div class="container">
-          <form action="https://formspree.io/f/xnqorpkb" method="POST">
-            <div>
-              <div class="form-group">
-                <input type="text" placeholder="Enter your Name" name="name" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <input type="email" placeholder="Enter your Email" name="email" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <textarea placeholder="Enter your Message" name="message" id="" rows="3" class="form-control"
-                  required></textarea>
-              </div>
-              <div class="form-group">
-                <button class="btn btn-secondary form-control">Submit</button>
-              </div>
-            </div>
-          </form>
-          <!-- Ajax Script -->
-          <script>
-            window.addEventListener("DOMContentLoaded", function() {
-          
-              // get the form elements defined in your form HTML above
-              
-              var form = document.getElementById("my-form");
-              var button = document.getElementById("my-form-button");
-              var status = document.getElementById("my-form-status");
-          
-              // Success and Error functions for after the form is submitted
-              
-              function success() {
-                form.reset();
-                button.style = "display: none ";
-                status.innerHTML = "Thanks!";
-              }
-          
-              function error() {
-                status.innerHTML = "Oops! There was a problem.";
-              }
-          
-              // handle the form submission event
-          
-              form.addEventListener("submit", function(ev) {
-                ev.preventDefault();
-                var data = new FormData(form);
-                ajax(form.method, form.action, data, success, error);
-              });
-            });
+
             
-            // helper function for sending an AJAX request
-          
-            function ajax(method, url, data, success, error) {
-              var xhr = new XMLHttpRequest();
-              xhr.open(method, url);
-              xhr.setRequestHeader("Accept", "application/json");
-              xhr.onreadystatechange = function() {
-                if (xhr.readyState !== XMLHttpRequest.DONE) return;
-                if (xhr.status === 200) {
-                  success(xhr.response, xhr.responseType);
-                } else {
-                  error(xhr.status, xhr.response, xhr.responseType);
+            <div class="alert alert-success">
+              <audio controls>
+                <source src="src/yt1s.com - 1 Hour Hokage Funeral Naruto OST Piano Version.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+              <strong>Enjoy the music till then</strong>
+            </div>
+          </div>
+
+
+      <!-- Contact -->
+      <div id="contact" class="container-fluid">
+        <div class="jumbotron">
+          <h1 style="text-align: center;">Drop me a line</h1>
+          <div class="container">
+            <form action="https://formspree.io/f/xnqorpkb" method="POST">
+              <div>
+                <div class="form-group">
+                  <input type="text" placeholder="Enter your Name" name="name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="Enter your Email" name="email" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <textarea placeholder="Enter your Message" name="message" id="" rows="3" class="form-control"
+                    required></textarea>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-secondary form-control">Submit</button>
+                </div>
+              </div>
+            </form>
+            <!-- Ajax Script -->
+            <script>
+              window.addEventListener("DOMContentLoaded", function () {
+
+                // get the form elements defined in your form HTML above
+
+                var form = document.getElementById("my-form");
+                var button = document.getElementById("my-form-button");
+                var status = document.getElementById("my-form-status");
+
+                // Success and Error functions for after the form is submitted
+
+                function success() {
+                  form.reset();
+                  button.style = "display: none ";
+                  status.innerHTML = "Thanks!";
                 }
-              };
-              xhr.send(data);
-            }
-          </script>
+
+                function error() {
+                  status.innerHTML = "Oops! There was a problem.";
+                }
+
+                // handle the form submission event
+
+                form.addEventListener("submit", function (ev) {
+                  ev.preventDefault();
+                  var data = new FormData(form);
+                  ajax(form.method, form.action, data, success, error);
+                });
+              });
+
+              // helper function for sending an AJAX request
+
+              function ajax(method, url, data, success, error) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.onreadystatechange = function () {
+                  if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                  if (xhr.status === 200) {
+                    success(xhr.response, xhr.responseType);
+                  } else {
+                    error(xhr.status, xhr.response, xhr.responseType);
+                  }
+                };
+                xhr.send(data);
+              }
+            </script>
 
 
 
 
 
-          <div style="text-align: center;">
-            <a href="https://www.facebook.com/saurabh.kala.169/"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-            <a href="https://instagram.com/saurabh111121"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="https://twitter.com"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="https://github.com/saurabh111121"><i class="fa fa-github" aria-hidden="true"></i></a>
+            <div style="text-align: center;">
+              <a href="https://www.facebook.com/saurabh.kala.169/"><i class="fa fa-facebook-square"
+                  aria-hidden="true"></i></a>
+              <a href="https://instagram.com/saurabh111121"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+              <a href="https://twitter.com"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="https://github.com/saurabh111121"><i class="fa fa-github" aria-hidden="true"></i></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="test" class="container-fluid">
-      <h1>Test</h1>
-      <p>This is to check the alignment of all the contents </p>
-      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
-        look
-        at the navigation bar while scrolling!</p>
-    </div>
+      <div id="test" class="container-fluid">
+        <h1>Test</h1>
+        <p>This is to check the alignment of all the contents </p>
+        <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and
+          look
+          at the navigation bar while scrolling!</p>
+      </div>
 
 
 
@@ -209,8 +181,8 @@
 
 
 
-   <!-- Scripts -->
-  
+    <!-- Scripts -->
+
   </body>
 
 </html>
