@@ -1,0 +1,31 @@
+body{
+    text-align: center;
+}
+
+header{
+    color: green;
+}
+
+.board{
+    color: lightgray;
+}
+
+.square {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    font-size: 80px;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+    font-family: fantasy;
+}
+
+
+.bottom {
+    border-bottom: 5px solid purple;
+}
+
+.right {
+    border-right: 5px solid purple;
+}
+
+
