@@ -6,8 +6,12 @@ header{
     color: green;
 }
 
+footer{
+    font-size: 20px;
+}
+
 .board{
-    color: lightgray;
+    /* color: lightgray; */
 }
 
 .square {
@@ -26,6 +30,11 @@ header{
 
 .right {
     border-right: 5px solid purple;
+}
+
+#winner{
+    color: red;
+    font-weight: bold;
 }
 
 
