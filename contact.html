@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+
+    <!--  bootstrap -->
+    <link rel="stylesheet" href="src/bootstrap/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <script src="src/bootstrap/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+
+
+    <!-- Font aweseome -->
+    <script src="https://use.fontawesome.com/10b1426743.js"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="game.html">Game</a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <br>
+
+    <!-- body -->
+    <div class="container">
+
+        <!-- Contact -->
+        <div id="contact" class="container-fluid">
+            <div class="jumbotron">
+                <h1 style="text-align: center;">Drop me a line</h1>
+                <br>
+                <div class="container">
+                    <form action="https://formspree.io/f/xnqorpkb" method="POST">
+                        <div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Enter your Name" name="name" class="form-control"
+                                    required />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Enter your Email" name="email" class="form-control"
+                                    required />
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Enter your Message" name="message" id="" rows="3"
+                                    class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-secondary form-control">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Ajax Script -->
+                    <script>
+                        window.addEventListener("DOMContentLoaded", function () {
+
+                            // get the form elements defined in your form HTML above
+
+                            var form = document.getElementById("my-form");
+                            var button = document.getElementById("my-form-button");
+                            var status = document.getElementById("my-form-status");
+
+                            // Success and Error functions for after the form is submitted
+
+                            function success() {
+                                form.reset();
+                                button.style = "display: none ";
+                                status.innerHTML = "Thanks!";
+                            }
+
+                            function error() {
+                                status.innerHTML = "Oops! There was a problem.";
+                            }
+
+                            // handle the form submission event
+
+                            form.addEventListener("submit", function (ev) {
+                                ev.preventDefault();
+                                var data = new FormData(form);
+                                ajax(form.method, form.action, data, success, error);
+                            });
+                        });
+
+                        // helper function for sending an AJAX request
+
+                        function ajax(method, url, data, success, error) {
+                            var xhr = new XMLHttpRequest();
+                            xhr.open(method, url);
+                            xhr.setRequestHeader("Accept", "application/json");
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                                if (xhr.status === 200) {
+                                    success(xhr.response, xhr.responseType);
+                                } else {
+                                    error(xhr.status, xhr.response, xhr.responseType);
+                                }
+                            };
+                            xhr.send(data);
+                        }
+                    </script>
+
+
+
+
+
+                    <div style="text-align: center;">
+                        <a href="https://www.facebook.com/saurabh.kala.169/"><i class="fa fa-facebook-square"
+                                aria-hidden="true"></i></a>
+                        <a href="https://instagram.com/saurabh111121"><i class="fa fa-instagram"
+                                aria-hidden="true"></i></a>
+                        <a href="https://twitter.com"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://github.com/saurabh111121"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
