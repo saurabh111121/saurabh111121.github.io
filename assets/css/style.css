@@ -11,6 +11,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  font-display: swap;
 }
 
 a {
@@ -825,7 +826,7 @@ section {
 .skills .progress-bar {
   width: 1px;
   height: 10px;
-  transition: .9s;
+  transition: width 1s ease-in-out;
   background-color: #106eea;
 }
 
@@ -1096,6 +1097,7 @@ section {
 
 .portfolio .portfolio-item {
   margin-bottom: 30px;
+  will-change: transform;
 }
 
 .portfolio .portfolio-item .portfolio-info {

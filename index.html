@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal portfolio website showcasing projects, skills, and experience">
-  <meta name="keywords" content="portfolio, web development, projects, skills">
+  <meta name="description" content="Personal portfolio website of Saurabh Kala, web developer and designer showcasing projects, skills, and experience">
+  <meta name="keywords" content="portfolio, web development, web design, frontend developer, UI design, Saurabh Kala">
   <meta name="author" content="Saurabh Kala">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#106eea">
   
   <title>Saurabh Kala - Portfolio</title>
 
@@ -38,6 +40,8 @@
           <li><a href="#skills">Skills</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="game.html">Game</a></li>
+          <li><a href="wallpapers.html">Wallpapers</a></li>
+          <li><a href="books.html">Books</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -331,11 +335,23 @@
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Custom scripts for index page -->
   <script>
-    // Initialize skill bar animations
-    $(document).ready(function() {
-      $('.progress .progress-bar').each(function() {
-        $(this).css("width", $(this).attr("aria-valuenow") + '%');
+    // Initialize skill bar animations with better performance
+    $(window).on('load', function() {
+      // Add a small delay to ensure DOM is fully rendered
+      setTimeout(function() {
+        $('.progress .progress-bar').each(function() {
+          $(this).css({
+            "width": $(this).attr("aria-valuenow") + '%',
+            "transition": "width 1s ease-in-out"
+          });
+        });
+      }, 300);
+      
+      // Add lazy loading to portfolio images
+      $('.portfolio-item img').each(function() {
+        $(this).attr('loading', 'lazy');
       });
     });
   </script>
