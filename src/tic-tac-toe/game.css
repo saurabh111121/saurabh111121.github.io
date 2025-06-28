@@ -1,40 +1,123 @@
-body{
-    text-align: center;
+/* Tic Tac Toe Game Styling */
+.game-section {
+  padding: 60px 0;
 }
 
-header{
-    color: green;
+.game-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-footer{
-    font-size: 20px;
-}
-
-.board{
-    /* color: lightgray; */
+.board {
+  margin: 20px auto;
+  max-width: 300px;
 }
 
 .square {
-    height: 100px;
-    width: 100px;
-    text-align: center;
-    font-size: 80px;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
-    font-family: fantasy;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-
-.bottom {
-    border-bottom: 5px solid purple;
+.square:hover {
+  background-color: #f8f9fa;
 }
 
-.right {
-    border-right: 5px solid purple;
+.square.right {
+  border-right: 3px solid #106eea;
 }
 
-#winner{
-    color: red;
-    font-weight: bold;
+.square.bottom {
+  border-bottom: 3px solid #106eea;
 }
 
+.square.notEmpty {
+  cursor: not-allowed;
+}
 
+/* X and O styling */
+.square:contains('x') {
+  color: #e74c3c;
+}
+
+.square:contains('o') {
+  color: #3498db;
+}
+
+/* Game info styling */
+.game-info {
+  margin-top: 20px;
+}
+
+.winner-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: #106eea;
+  min-height: 36px;
+}
+
+/* Score display styling */
+.alert-info {
+  background-color: #e7f1fd;
+  color: #106eea;
+  border-color: #deebfd;
+  margin-top: 20px;
+}
+
+.alert-info p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Game instructions styling */
+.game-instructions {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.game-instructions h4 {
+  color: #106eea;
+  margin-bottom: 15px;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .square {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+  
+  .game-container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .square {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+  
+  .winner-message {
+    font-size: 20px;
+  }
+  
+  .alert-info p {
+    font-size: 20px;
+  }
+}

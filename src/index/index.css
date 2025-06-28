@@ -1,37 +1,193 @@
+/* Custom styles for the homepage */
+
+/* General styles */
 body {
-    position: relative;
-  }
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+}
 
-  #home {
-    padding-top: 100px;
-    height: 800px;
-    background-color: white;
-  }
+/* Hero section customization */
+#hero {
+  padding-top: 140px; /* Account for the fixed header */
+}
 
-  #section1 {
-    padding-top: 100px;
-    height: 800px;
-    background-color: #1E88E5;
-  }
+#hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
 
-  #section2 {
-    padding-top: 100px;
-    height: 800px;
-    background-color: #673ab7;
-  }
+#hero h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #555555;
+}
 
-  #section3 {
-    padding-top: 100px;
-    height: 800px;
-    background-color: #ff9800;
-  }
+/* Call-to-action buttons */
+.btn-get-started {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #fff;
+  background: #106eea;
+  margin-right: 10px;
+}
 
-  #contact {
-    padding-top: 100px;
-    height: 800px;
+.btn-get-started:hover {
+  background: #247cf0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-projects {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+  color: #106eea;
+  border: 2px solid #106eea;
+  background: transparent;
+}
+
+.btn-projects:hover {
+  background: #106eea;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Featured game section */
+.featured-game {
+  background-color: #f6f9fe;
+  padding: 60px 0;
+}
+
+.featured-game p {
+  margin-bottom: 25px;
+}
+
+/* Contact preview section */
+.contact-preview {
+  padding: 60px 0;
+}
+
+.info-box {
+  color: #444444;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.3);
+  padding: 20px 0 30px 0;
+  margin-bottom: 30px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.7);
+}
+
+.info-box i {
+  font-size: 32px;
+  color: #106eea;
+  border-radius: 50%;
+  padding: 8px;
+  margin-bottom: 15px;
+  display: inline-block;
+  border: 2px dotted #b3d1fa;
+}
+
+.info-box h3 {
+  font-size: 20px;
+  color: #777777;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.info-box p {
+  padding: 0;
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 5px;
+  color: #106eea;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #247cf0;
+  transform: translateY(-3px);
+}
+
+/* Override for the portfolio section */
+.portfolio-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-info {
+  padding: 15px;
+}
+
+.portfolio-info h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.portfolio-wrap {
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.portfolio-wrap:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.portfolio-wrap img {
+  border-radius: 4px;
+  transition: all 0.5s ease;
+}
+
+.portfolio-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 991px) {
+  #hero {
+    padding-top: 60px;
   }
-  #test {
-    padding-top: 100px;
-    height: 800px;
-    background-color: #673ab7;
+  
+  #hero h1 {
+    font-size: 36px;
   }
+  
+  #hero h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-get-started, .btn-projects {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+}

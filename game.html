@@ -2,123 +2,187 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Play Tic Tac Toe - A fun game by Saurabh Kala">
+  <meta name="keywords" content="tic tac toe, game, portfolio, javascript game">
+  <meta name="author" content="Saurabh Kala">
+  
+  <title>Tic Tac Toe - Saurabh Kala</title>
 
-    <link rel="stylesheet" href="src/bootstrap/bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="src/tic-tac-toe/game.css">
-    <script src="src/tic-tac-toe/game.js"></script>
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="icon" href="assets/img/favicon.png">
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="src/bootstrap/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="src/tic-tac-toe/game.css">
 
+  <!-- Font Awesome -->
+  <script src="https://use.fontawesome.com/10b1426743.js"></script>
 </head>
 
-<body >
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-              aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="game.html">Game</a>
-                </li>
-    
-              </ul>
-            </div>
-          </nav>
-        <h1>
-            Tic Tac Toe <strong> GAME</strong>
-        </h1>
-    </header>
-    <br>
+<body>
+  <!-- Header -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="logo"><a href="index.html">Saurabh<span>Kala</span></a></h1>
 
-    <!-- body -->
-    <div class="container">
-        <div>
-            <div class="board">
-                <div class="row justify-content-center">
-                    <div class="square bottom right" id="c00"></div>
-                    <div class="square bottom right" id="c01"></div>
-                    <div class="square bottom" id="c02"></div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="square bottom right" id="c10"></div>
-                    <div class="square bottom right" id="c11"></div>
-                    <div class="square bottom" id="c12"></div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="square right" id="c20"></div>
-                    <div class="square right" id="c21"></div>
-                    <div class="square" id="c22"></div>
-                </div>
-            </div>
-        </div>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li class="active"><a href="game.html">Game</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
 
-        <br>
-        <div id="winner"></div>
-        <div>
-            <button class="btn btn-primary" id="restart">Reset</button>
-        </div>
-
-        <br>
-
-        <div class="row alert alert-info">
-            <div class="col">
-                <div><strong>Player</strong><p id="score1">0</p></div>
-            </div>
-            <div class="col">
-                <div><strong>Computer</strong><p id="score2">0</p></div>   
-            </div>
-        </div>
-
-        <br>
-        
-
-
+      <!-- Mobile Navigation -->
+      <nav class="mobile-nav d-lg-none">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li class="active"><a href="game.html">Game</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="mobile-nav-toggle d-lg-none"><i class="fa fa-bars"></i></button>
     </div>
+  </header>
 
-    <footer>
-        <a class="text-muted" href="index.html">Click here to go back</a>
-    </footer>
+  <main id="main">
+    <!-- Breadcrumbs -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Tic Tac Toe Game</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Game</li>
+          </ol>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        $(document).ready(function () {
-            $(".square").click(function () {
+    <!-- Game Section -->
+    <section class="game-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Game</h2>
+          <h3>Tic <span>Tac</span> Toe</h3>
+          <p>Test your strategic skills against a smart AI opponent</p>
+        </div>
 
-                if ($(this).hasClass('notEmpty')) {
-                    console.log('notEmpty');
-                } else {
-                    var cell = $(this).attr("id")
-                    var row = parseInt(cell[1])
-                    var col = parseInt(cell[2])
-                    $(this).addClass('notEmpty');
-                    if (!myMove) {
-                        board[row][col] = false;
-                        myMove = true;
-                        updateMove();
-                        makeMove();
-                    }
-                }
-            });
-            $("#restart").click(restartGame);
-        });
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="game-container text-center">
+              <div class="board">
+                <div class="row justify-content-center">
+                  <div class="square bottom right" id="c00"></div>
+                  <div class="square bottom right" id="c01"></div>
+                  <div class="square bottom" id="c02"></div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="square bottom right" id="c10"></div>
+                  <div class="square bottom right" id="c11"></div>
+                  <div class="square bottom" id="c12"></div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="square right" id="c20"></div>
+                  <div class="square right" id="c21"></div>
+                  <div class="square" id="c22"></div>
+                </div>
+              </div>
 
-    </script>
+              <div class="game-info mt-4">
+                <div id="winner" class="mb-3 winner-message"></div>
+                <button class="btn btn-primary" id="restart">Reset Game</button>
+              </div>
 
+              <div class="row alert alert-info mt-4">
+                <div class="col">
+                  <div><strong>Player</strong>
+                    <p id="score1">0</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div><strong>Computer</strong>
+                    <p id="score2">0</p>
+                  </div>
+                </div>
+              </div>
 
+              <div class="game-instructions mt-4">
+                <h4>How to Play</h4>
+                <p>Click on any empty square to place your X. The computer will respond with O. Get three in a row to win!</p>
+                <p>The game uses a minimax algorithm to make the computer a challenging opponent.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; <strong><span>Saurabh Kala</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Portfolio Website
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- jQuery first, then Bootstrap JS -->
+  <script src="src/jquery/compressed production jQuery 3.5.1/jquery-3.5.1.min.js"></script>
+  <script src="src/bootstrap/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+  <script src="src/popper.js/popper.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+  
+  <!-- Game JS -->
+  <script src="src/tic-tac-toe/game.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Game click handling
+      $(".square").click(function () {
+        if ($(this).hasClass('notEmpty')) {
+          console.log('notEmpty');
+        } else {
+          var cell = $(this).attr("id")
+          var row = parseInt(cell[1])
+          var col = parseInt(cell[2])
+          $(this).addClass('notEmpty');
+          if (!myMove) {
+            board[row][col] = false;
+            myMove = true;
+            updateMove();
+            makeMove();
+          }
+        }
+      });
+      
+      // Reset game
+      $("#restart").click(restartGame);
+      
+      // Initialize the game
+      updateMove();
+    });
+  </script>
 </body>
 
 </html>
