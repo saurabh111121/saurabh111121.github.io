@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ============================================================
-  // 10. CONTACT FORM (enhanced UX, no backend)
+  // 10. CONTACT FORM (Formspree integration)
   // ============================================================
 
   const contactForm = (() => {
@@ -359,6 +359,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSuccess = submitBtn?.querySelector('.btn-success');
     const charCountEl = document.getElementById('char-count');
     const messageField = document.getElementById('contact-message');
+    const emailField = document.getElementById('contact-email');
+    const hiddenReplyTo = document.getElementById('hidden-replyto');
 
     // Character counter
     if (messageField && charCountEl) {
@@ -375,26 +377,90 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Form submit with animation
+    const subjectField = document.getElementById('contact-subject');
+    const hiddenSubject = document.getElementById('hidden-subject');
+
+    // Sync email to hidden _replyto field
+    if (emailField && hiddenReplyTo) {
+      emailField.addEventListener('input', () => {
+        hiddenReplyTo.value = emailField.value;
+      });
+    }
+
+    // Sync subject selection to email subject line
+    if (subjectField && hiddenSubject) {
+      subjectField.addEventListener('change', () => {
+        const name = document.getElementById('contact-name')?.value || 'Someone';
+        hiddenSubject.value = `[Portfolio] ${subjectField.value} — from ${name}`;
+      });
+    }
+
+    // Form submit via Formspree AJAX
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       if (!submitBtn) return;
+
+      // Sync hidden fields one final time before submit
+      if (hiddenReplyTo && emailField) {
+        hiddenReplyTo.value = emailField.value;
+      }
+      if (hiddenSubject && subjectField) {
+        const name = document.getElementById('contact-name')?.value || 'Someone';
+        hiddenSubject.value = `[Portfolio] ${subjectField.value} — from ${name}`;
+      }
 
       // Show loading state
       submitBtn.classList.add('loading');
       if (btnText) btnText.style.display = 'none';
       if (btnLoading) btnLoading.style.display = 'inline-flex';
 
-      // Simulate sending (no backend)
-      setTimeout(() => {
-        // Show success
+      // Submit to Web3Forms (primary) with Formspree fallback
+      const formData = new FormData(form);
+      const FORMSPREE_URL = 'https://formspree.io/f/mvovnglz';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          showSuccess();
+        } else {
+          // Web3Forms failed — try Formspree as fallback
+          return submitToFormspree(formData);
+        }
+      })
+      .catch(() => {
+        // Web3Forms unreachable — try Formspree as fallback
+        return submitToFormspree(formData);
+      });
+
+      function submitToFormspree(data) {
+        fetch(FORMSPREE_URL, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+          if (response.ok) {
+            showSuccess();
+          } else {
+            showError('Failed — try again');
+          }
+        })
+        .catch(() => {
+          showError('Network error — try again');
+        });
+      }
+
+      function showSuccess() {
         if (btnLoading) btnLoading.style.display = 'none';
         if (btnSuccess) btnSuccess.style.display = 'inline-flex';
         submitBtn.classList.remove('loading');
         submitBtn.classList.add('success');
 
-        // Reset after 3 seconds
         setTimeout(() => {
           form.reset();
           if (charCountEl) charCountEl.textContent = '0';
@@ -402,7 +468,19 @@ document.addEventListener('DOMContentLoaded', () => {
           if (btnSuccess) btnSuccess.style.display = 'none';
           if (btnText) btnText.style.display = 'inline';
         }, 3000);
-      }, 1500);
+      }
+
+      function showError(msg) {
+        if (btnLoading) btnLoading.style.display = 'none';
+        submitBtn.classList.remove('loading');
+        if (btnText) {
+          btnText.textContent = msg;
+          btnText.style.display = 'inline';
+        }
+        setTimeout(() => {
+          if (btnText) btnText.textContent = 'Send Message';
+        }, 3000);
+      }
     });
   })();
 
