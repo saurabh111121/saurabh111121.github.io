@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background circle -->
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#161b22"/>
+      <stop offset="100%" style="stop-color:#0d1117"/>
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#58a6ff"/>
+      <stop offset="100%" style="stop-color:#d2a8ff"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="200" cy="200" r="195" fill="url(#bg-grad)" stroke="#30363d" stroke-width="2"/>
+
+  <!-- Terminal window -->
+  <rect x="80" y="100" width="240" height="180" rx="12" fill="#1c2128" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Terminal header -->
+  <rect x="80" y="100" width="240" height="30" rx="12" fill="#252a33"/>
+  <rect x="80" y="118" width="240" height="12" fill="#252a33"/>
+  <circle cx="100" cy="115" r="5" fill="#f85149"/>
+  <circle cx="116" cy="115" r="5" fill="#d29922"/>
+  <circle cx="132" cy="115" r="5" fill="#3fb950"/>
+  <text x="200" y="118" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">saurabh@devops ~</text>
+
+  <!-- Terminal content -->
+  <text x="95" y="155" font-family="monospace" font-size="11" fill="#3fb950">$</text>
+  <text x="108" y="155" font-family="monospace" font-size="11" fill="#e6edf3">kubectl get pods -n production</text>
+  <text x="95" y="175" font-family="monospace" font-size="10" fill="#8b949e">NAME                    READY   STATUS</text>
+  <text x="95" y="192" font-family="monospace" font-size="10" fill="#58a6ff">api-7d4f8b6c5-x2k9p   1/1     Running</text>
+  <text x="95" y="209" font-family="monospace" font-size="10" fill="#58a6ff">web-5c6d7e8f9-m3n4q   1/1     Running</text>
+  <text x="95" y="226" font-family="monospace" font-size="10" fill="#58a6ff">worker-2a3b4c5d-h7j8   1/1     Running</text>
+  <text x="95" y="248" font-family="monospace" font-size="11" fill="#3fb950">$</text>
+  <text x="108" y="248" font-family="monospace" font-size="11" fill="#e6edf3">terraform apply ✓</text>
+  <text x="95" y="268" font-family="monospace" font-size="10" fill="#3fb950">Apply complete! Resources: 12 added, 0 changed, 0 destroyed.</text>
+
+  <!-- Floating icons around terminal -->
+  <!-- Docker -->
+  <circle cx="65" cy="160" r="18" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="65" y="165" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#58a6ff">🐳</text>
+
+  <!-- K8s -->
+  <circle cx="335" cy="150" r="18" fill="#161b22" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="335" y="155" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#d2a8ff">☸</text>
+
+  <!-- AWS -->
+  <circle cx="340" cy="220" r="18" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="340" y="225" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f0883e">AWS</text>
+
+  <!-- Git -->
+  <circle cx="60" cy="240" r="18" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="60" y="245" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#3fb950">⎇</text>
+
+  <!-- Bottom text -->
+  <text x="200" y="320" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="url(#accent-grad)">DevOps Engineer</text>
+  <text x="200" y="340" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b949e">Building • Automating • Scaling</text>
+</svg>

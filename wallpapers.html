@@ -1,471 +1,478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Download free 4K desktop wallpapers - High quality wallpaper collection by Saurabh Kala">
-  <meta name="keywords" content="wallpapers, 4k wallpapers, desktop wallpapers, high resolution, free wallpapers">
+  <meta name="description" content="Free 4K high-resolution desktop wallpapers curated by Saurabh Kala.">
   <meta name="author" content="Saurabh Kala">
-  
-  <title>4K Wallpapers - Saurabh Kala</title>
+  <meta name="theme-color" content="#00d4ff">
+
+  <title>4K Wallpapers — Saurabh Kala</title>
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="icon" href="assets/img/favicon.png">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="src/bootstrap/bootstrap-4.5.3-dist/css/bootstrap.min.css">
-  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- Font Awesome -->
-  <script src="https://use.fontawesome.com/10b1426743.js"></script>
-
   <style>
-    /* Custom styles for wallpapers page */
-    .wallpaper-item {
-      margin-bottom: 30px;
-      overflow: hidden;
-      position: relative;
-      border-radius: 5px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+    .breadcrumb {
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
-    
-    .wallpaper-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-    
-    .wallpaper-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: all 0.5s ease;
-    }
-    
-    .wallpaper-item:hover img {
-      transform: scale(1.1);
-    }
-    
-    .wallpaper-info {
-      padding: 15px;
-      background: white;
-    }
-    
-    .wallpaper-info h4 {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-    
-    .wallpaper-info .resolution {
-      color: #777;
-      font-size: 14px;
-    }
-    
-    .wallpaper-actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-    
-    .download-btn {
-      background-color: #106eea;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 4px;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-    
-    .download-btn:hover {
-      background-color: #0b5ac2;
+    .breadcrumb a {
+      color: var(--accent);
       text-decoration: none;
-      color: white;
     }
-    
-    .wallpaper-category {
-      margin-bottom: 50px;
+    .breadcrumb a:hover {
+      text-decoration: underline;
     }
-    
-    .category-title {
-      border-left: 4px solid #106eea;
-      padding-left: 15px;
-      margin-bottom: 30px;
+    .breadcrumb span {
+      margin: 0 0.5rem;
     }
-    
-    .category-filter {
-      margin-bottom: 30px;
+
+    /* Hero Banner */
+    .wallpaper-hero {
+      text-align: center;
+      padding: 3rem 0 2rem;
     }
-    
-    .category-filter ul {
+    .wallpaper-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .wallpaper-hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Filter Buttons */
+    .filter-bar {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
     }
-    
-    .category-filter li {
-      margin: 5px;
-      cursor: pointer;
-      padding: 8px 16px;
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.6rem 1.25rem;
       border-radius: 50px;
-      background: #f1f6fe;
-      transition: all 0.3s ease;
-    }
-    
-    .category-filter li:hover,
-    .category-filter li.filter-active {
-      background: #106eea;
-      color: white;
-    }
-    
-    .wallpaper-preview-modal .modal-content {
-      background-color: rgba(0, 0, 0, 0.9);
-      border: none;
-    }
-    
-    .wallpaper-preview-modal .modal-body {
-      padding: 0;
-    }
-    
-    .wallpaper-preview-modal .modal-body img {
-      width: 100%;
-    }
-    
-    .modal-action-buttons {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-    }
-    
-    .modal-action-buttons .btn {
-      margin-left: 10px;
-      background-color: #106eea;
-      border: none;
-    }
-    
-    .modal-action-buttons .btn:hover {
-      background-color: #0b5ac2;
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      color: white;
-      font-size: 24px;
+      font-size: 0.9rem;
+      font-weight: 500;
       cursor: pointer;
-      z-index: 1100;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Wallpaper Grid */
+    .wallpaper-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 992px) {
+      .wallpaper-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 576px) {
+      .wallpaper-grid {
+        grid-template-columns: 1fr;
+      }
+      .wallpaper-hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Wallpaper Card */
+    .wallpaper-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      aspect-ratio: 16 / 10;
+    }
+    .wallpaper-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent);
+    }
+    .wallpaper-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .wallpaper-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Glassmorphism Overlay */
+    .wallpaper-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .wallpaper-card:hover .wallpaper-overlay {
+      opacity: 1;
+    }
+    .wallpaper-overlay h3 {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .wallpaper-overlay .resolution {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .wallpaper-overlay .btn-download {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .wallpaper-overlay .btn-download:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(var(--accent-rgb, 0, 212, 255), 0.4);
+    }
+
+    .wallpaper-card.hidden {
+      display: none;
     }
   </style>
 </head>
 
 <body>
-  <!-- Header -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="index.html">Saurabh<span>Kala</span></a></h1>
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#skills">Skills</a></li>
-          <li><a href="index.html#portfolio">Portfolio</a></li>
-          <li><a href="game.html">Game</a></li>
-          <li class="active"><a href="wallpapers.html">Wallpapers</a></li>
-          <li><a href="books.html">Books</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <header id="header" class="header">
+    <div class="container header-container">
+      <a href="index.html#hero" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-terminal"></i></span>
+        Saurabh<span>Kala</span>
+      </a>
+
+      <nav class="nav-links" id="nav">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#skills" class="nav-link">Skills</a>
+        <a href="index.html#experience" class="nav-link">Experience</a>
+        <a href="index.html#projects" class="nav-link">Projects</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
       </nav>
 
-      <!-- Mobile Navigation Toggle Button -->
-      <button type="button" class="mobile-nav-toggle d-lg-none"><i class="fa fa-bars"></i></button>
+      <div class="header-actions">
+        <a href="index.html#contact" class="btn-resume">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Hire Me</span>
+        </a>
+
+        <div class="user-menu">
+          <button class="user-menu-btn theme-toggle-btn" aria-label="Toggle theme menu">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+          </button>
+          <div class="user-dropdown theme-dropdown">
+            <div class="dropdown-label">Theme</div>
+            <button class="theme-option" data-theme="dark">
+              <i class="fa-solid fa-moon"></i> <span>Dark</span>
+              <span class="theme-check" data-for="dark"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <button class="theme-option" data-theme="light">
+              <i class="fa-solid fa-sun"></i> <span>Light</span>
+              <span class="theme-check" data-for="light"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <button class="theme-option" data-theme="cyberpunk">
+              <i class="fa-solid fa-bolt"></i> <span>Cyberpunk</span>
+              <span class="theme-check" data-for="cyberpunk"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <button class="theme-option" data-theme="nord">
+              <i class="fa-solid fa-snowflake"></i> <span>Nord</span>
+              <span class="theme-check" data-for="nord"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <button class="theme-option" data-theme="dracula">
+              <i class="fa-solid fa-ghost"></i> <span>Dracula</span>
+              <span class="theme-check" data-for="dracula"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <button class="theme-option" data-theme="solarized">
+              <i class="fa-solid fa-solar-panel"></i> <span>Solarized</span>
+              <span class="theme-check" data-for="solarized"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <button class="theme-option" data-theme="midnight">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Midnight</span>
+              <span class="theme-check" data-for="midnight"><i class="fa-solid fa-check"></i></span>
+            </button>
+            <div class="dropdown-divider"></div>
+            <a href="https://github.com/saurabh111121" class="dropdown-link" target="_blank">
+              <i class="fa-brands fa-github"></i> <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <button class="mobile-nav-toggle" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main id="main">
-    <!-- Breadcrumbs -->
-    <section class="breadcrumbs">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>4K Desktop Wallpapers</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Wallpapers</li>
-          </ol>
-        </div>
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <!-- Main Content -->
+  <main style="padding-top: 80px;">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        Wallpapers
       </div>
-    </section>
 
-    <!-- Wallpapers Section -->
-    <section class="wallpapers-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Wallpapers</h2>
-          <h3>Premium 4K <span>Wallpapers</span></h3>
-          <p>Free high-quality 4K wallpapers for your desktop</p>
-        </div>
+      <!-- Hero -->
+      <section class="wallpaper-hero">
+        <h1><i class="fa-solid fa-image"></i> 4K Wallpapers</h1>
+        <p>Free high-resolution desktop wallpapers</p>
+      </section>
 
-        <div class="category-filter">
-          <ul id="wallpaper-flters">
-            <li data-filter="*" class="filter-active">All Categories</li>
-            <li data-filter=".filter-nature">Nature</li>
-            <li data-filter=".filter-abstract">Abstract</li>
-            <li data-filter=".filter-city">Cityscapes</li>
-            <li data-filter=".filter-minimal">Minimal</li>
-            <li data-filter=".filter-space">Space</li>
-          </ul>
-        </div>
-
-        <div class="row wallpaper-container">
-          <!-- Nature Wallpapers -->
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-nature">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="Mountain Lake 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Mountain Lake</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-1.jpg" data-title="Mountain Lake">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-1.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-nature">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="Forest Path 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Forest Path</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-2.jpg" data-title="Forest Path">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-2.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Abstract Wallpapers -->
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-abstract">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="Abstract Waves 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Abstract Waves</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-3.jpg" data-title="Abstract Waves">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-3.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-abstract">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="Geometric Patterns 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Geometric Patterns</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-4.jpg" data-title="Geometric Patterns">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-4.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cityscapes Wallpapers -->
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-city">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="Night City 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Night City</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-5.jpg" data-title="Night City">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-5.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-city">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="Skyline 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Skyline</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-6.jpg" data-title="Skyline">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-6.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Minimal Wallpapers -->
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-minimal">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="Clean Shapes 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Clean Shapes</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-7.jpg" data-title="Clean Shapes">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-7.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-minimal">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="Minimalist 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Minimalist</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-8.jpg" data-title="Minimalist">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-8.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Space Wallpapers -->
-          <div class="col-lg-4 col-md-6 wallpaper-item filter-space">
-            <div class="wallpaper-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="Galaxy 4K Wallpaper">
-              <div class="wallpaper-info">
-                <h4>Galaxy</h4>
-                <p class="resolution">3840 x 2160 px (4K UHD)</p>
-                <div class="wallpaper-actions">
-                  <button class="btn-preview" data-img="assets/img/portfolio/portfolio-9.jpg" data-title="Galaxy">Preview</button>
-                  <a href="assets/img/portfolio/portfolio-9.jpg" class="download-btn" download>Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Add Wallpaper Info Section -->
-        <div class="wallpaper-info-section mt-5">
-          <div class="card">
-            <div class="card-body">
-              <h3>About These Wallpapers</h3>
-              <p>All wallpapers available here are in true 4K resolution (3840 x 2160 pixels) to ensure the highest quality on your desktop. These high-definition backgrounds are perfect for modern displays and will make your desktop look stunning.</p>
-              <p>Feel free to download and use these wallpapers for your personal desktop. For commercial use, please contact me directly.</p>
-              <h4>How to Set as Desktop Background:</h4>
-              <ul>
-                <li><strong>Windows:</strong> Right-click the downloaded image and select "Set as desktop background"</li>
-                <li><strong>macOS:</strong> Right-click the downloaded image and select "Set Desktop Picture"</li>
-                <li><strong>Linux:</strong> Right-click on your desktop, select "Change Background" and choose the downloaded image</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <!-- Filter Buttons -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="abstract">Abstract</button>
+        <button class="filter-btn" data-filter="minimal">Minimal</button>
+        <button class="filter-btn" data-filter="dark">Dark</button>
       </div>
-    </section>
 
-    <!-- Wallpaper Preview Modal -->
-    <div class="modal fade wallpaper-preview-modal" id="wallpaperPreviewModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <span class="modal-close" data-dismiss="modal">&times;</span>
-          <div class="modal-body">
-            <img src="" id="previewImage" alt="Wallpaper Preview">
-            <div class="modal-action-buttons">
-              <a href="#" class="btn btn-primary" id="downloadButton" download>Download Full Resolution</a>
-            </div>
+      <!-- Wallpaper Grid -->
+      <div class="wallpaper-grid" id="wallpaper-grid">
+
+        <div class="wallpaper-card" data-category="nature">
+          <img src="assets/img/portfolio/portfolio-1.jpg" alt="Mountain Lake" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Mountain Lake</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-1.jpg" class="btn-download" download="mountain-lake-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
           </div>
         </div>
+
+        <div class="wallpaper-card" data-category="nature">
+          <img src="assets/img/portfolio/portfolio-2.jpg" alt="Forest Path" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Forest Path</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-2.jpg" class="btn-download" download="forest-path-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="abstract">
+          <img src="assets/img/portfolio/portfolio-3.jpg" alt="Abstract Waves" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Abstract Waves</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-3.jpg" class="btn-download" download="abstract-waves-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="abstract">
+          <img src="assets/img/portfolio/portfolio-4.jpg" alt="Geometric Patterns" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Geometric Patterns</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-4.jpg" class="btn-download" download="geometric-patterns-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="dark">
+          <img src="assets/img/portfolio/portfolio-5.jpg" alt="Night City" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Night City</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-5.jpg" class="btn-download" download="night-city-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="dark">
+          <img src="assets/img/portfolio/portfolio-6.jpg" alt="Dark Nebula" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Dark Nebula</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-6.jpg" class="btn-download" download="dark-nebula-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="minimal">
+          <img src="assets/img/portfolio/portfolio-7.jpg" alt="Clean Shapes" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Clean Shapes</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-7.jpg" class="btn-download" download="clean-shapes-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="minimal">
+          <img src="assets/img/portfolio/portfolio-8.jpg" alt="Minimalist Gradient" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Minimalist Gradient</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-8.jpg" class="btn-download" download="minimalist-gradient-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
+        <div class="wallpaper-card" data-category="nature">
+          <img src="assets/img/portfolio/portfolio-9.jpg" alt="Aurora Sky" loading="lazy">
+          <div class="wallpaper-overlay">
+            <h3>Aurora Sky</h3>
+            <div class="resolution">3840 x 2160</div>
+            <a href="assets/img/portfolio/portfolio-9.jpg" class="btn-download" download="aurora-sky-4k.jpg">
+              <i class="fa-solid fa-download"></i> Download
+            </a>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </main>
 
   <!-- Footer -->
-  <footer id="footer">
-    <div class="container py-4">
-      <div class="copyright">
-        &copy; <strong><span>Saurabh Kala</span></strong>. All Rights Reserved
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="index.html#hero" class="footer-logo">Saurabh<span>Kala</span></a>
+        <p class="footer-tagline">DevOps Engineer — Building reliable infrastructure at scale</p>
       </div>
-      <div class="credits">
-        Portfolio Website
+
+      <div class="footer-quicklinks">
+        <span class="footer-quicklinks-label">Quick Links</span>
+        <div class="footer-quicklinks-grid">
+          <a href="game.html" class="footer-quicklink">
+            <i class="fa-solid fa-gamepad"></i>
+            <span>Tic Tac Toe</span>
+          </a>
+          <a href="wallpapers.html" class="footer-quicklink">
+            <i class="fa-solid fa-image"></i>
+            <span>Wallpapers</span>
+          </a>
+          <a href="books.html" class="footer-quicklink">
+            <i class="fa-solid fa-book"></i>
+            <span>Books</span>
+          </a>
+          <a href="index.html" class="footer-quicklink">
+            <i class="fa-solid fa-house"></i>
+            <span>Portfolio</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Saurabh Kala. Crafted with <span class="heart">&#9829;</span> and too much coffee.</p>
       </div>
     </div>
   </footer>
 
-  <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
-  <!-- jQuery first, then Bootstrap JS -->
-  <script src="src/jquery/compressed production jQuery 3.5.1/jquery-3.5.1.min.js"></script>
-  <script src="src/bootstrap/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
-  <script src="src/popper.js/popper.min.js"></script>
-
-  <!-- Main JS -->
+  <!-- Custom JS -->
   <script src="assets/js/main.js"></script>
 
-  <!-- Custom JS for Wallpapers Page -->
+  <!-- Wallpaper Filter Logic -->
   <script>
-    $(document).ready(function() {
-      // Filter functionality
-      $('#wallpaper-flters li').on('click', function() {
-        $("#wallpaper-flters li").removeClass('filter-active');
-        $(this).addClass('filter-active');
-        
-        var filterValue = $(this).data('filter');
-        
-        $('.wallpaper-item').each(function() {
-          if (filterValue === '*') {
-            $(this).removeClass('d-none');
-            $(this).addClass('d-block');
-          } else if ($(this).hasClass(filterValue.replace('.', ''))) {
-            $(this).removeClass('d-none');
-            $(this).addClass('d-block');
-          } else {
-            $(this).removeClass('d-block');
-            $(this).addClass('d-none');
-          }
-        });
-      });
+    (function() {
+      'use strict';
 
-      // Wallpaper Preview Modal
-      $('.btn-preview').click(function() {
-        var imgSrc = $(this).data('img');
-        var title = $(this).data('title');
-        
-        $('#previewImage').attr('src', imgSrc);
-        $('#downloadButton').attr('href', imgSrc);
-        $('#downloadButton').attr('download', title + ' - 4K Wallpaper.jpg');
-        $('#wallpaperPreviewModal').modal('show');
-      });
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.wallpaper-card');
 
-      // Add animation effect to wallpaper items with better performance
-      $('.wallpaper-item').each(function(index) {
-        $(this).css({
-          'opacity': '0',
-          'transform': 'translateY(20px)',
-          'transition': 'all 0.5s ease'
-        });
-        
-        var $this = $(this);
-        setTimeout(function() {
-          $this.css({
-            'opacity': '1',
-            'transform': 'translateY(0)'
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          // Update active button
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          const filter = btn.dataset.filter;
+
+          cards.forEach(function(card) {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
           });
-        }, 100 * index);
+        });
       });
-    });
+    })();
   </script>
 </body>
 
